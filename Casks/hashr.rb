@@ -2,10 +2,17 @@ cask "hashr" do
   version "21.12.0"
   desc "An easy to use file hashing utility working with multiple algorithms. Powered by React & Material UI, built as a cross-plaform desktop application using Electron."
   homepage "https://github.com/KoBionic/hashr"
-  url "https://github.com/KoBionic/hashr/releases/download/#{version}/HashR-#{version}.dmg"
   name "HashR"
   app "HashR.app"
-  sha256 "368f5eb9331b4ad1e613e6bda6cff30073530c900adf751106a65dae2913a763"
+
+  if Hardware::CPU.intel?
+    url "https://github.com/KoBionic/hashr/releases/download/#{version}/HashR-#{version}.dmg"
+    sha256 ""
+  end
+  if Hardware::CPU.arm?
+    url "https://github.com/KoBionic/hashr/releases/download/#{version}/HashR-#{version}-arm64.dmg"
+    sha256 ""
+  end
 
   zap trash: [
     "~/Library/Application Support/HashR",
